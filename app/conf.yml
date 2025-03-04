@@ -1,0 +1,13 @@
+events:
+  container: 
+    - health_status
+    - oom
+    - create
+    - start
+    - stop
+    - restart
+    - destroy
+
+integrations:
+  notify:
+    enabled: True
