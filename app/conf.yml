@@ -7,6 +7,7 @@ events:
     - stop
     - restart
     - destroy
+    - kill
 
 integrations:
   notify:
