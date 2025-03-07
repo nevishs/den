@@ -16,17 +16,25 @@ A tiny container that checks local Docker event in real-time and sends them out 
     - TAG       has to match the last uploaded tag version on [this image](https://hub.docker.com/r/nevishs/den/tags) e.g. 0.3
 
 ```
+# build image
+docker build -t {YOUR_IMAGE}:{TAG} . --no-cache
+
 docker run -d --name {NAME} \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -e token={TOKEN} \
+--restart unless-stopped \
 {YOUR_IMAGE}:{TAG}
 
 # example
+docker build -t nevishs/dem:0.6 . --no-cache
+
 docker run -d --name docker-event-notification \
 -v /var/run/docker.sock:/var/run/docker.sock \
 -e token=XXXXX \
-nevishs/dem:0.3
+--restart unless-stopped \
+nevishs/dem:0.6
 ```
+
 ### Configuration
 Example `conf.yml` with a subset of available event types that will trigger a notification. For a full list of all available event types please see the official [Docker Events](https://docs.docker.com/engine/reference/commandline/events/).
 
